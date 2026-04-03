@@ -1,0 +1,19 @@
+#Project 5 Draft Graph 
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+summary = pd.DataFrame({
+    "state_clean": ["Minnesota", "Wisconsin", "Iowa", "Illinois", "Missouri", "Arkansas"],
+    "median_hazard_risk": [0.12, 0.15, 0.18, 0.22, 0.27, 0.31]
+})
+
+plt.figure(figsize=(10, 6))
+plt.bar(summary["state_clean"], summary["median_hazard_risk"])
+plt.title("Median Riverine Flood Risk by State")
+plt.xlabel("State")
+plt.ylabel("Median Riverine Flood Risk")
+plt.xticks(rotation=30, ha="right")
+plt.tight_layout()
+plt.show()
