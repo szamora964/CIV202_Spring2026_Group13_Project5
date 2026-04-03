@@ -1,0 +1,33 @@
+#
+
+print(summary.columns.tolist())
+
+# Step: Keep only columns that are actually in summary
+
+wanted_columns = [
+    "state_clean",
+    "tract_count",
+    "median_hazard_risk",
+    "mean_hazard_risk",
+    "upper_tail_hazard_risk",
+    "total_population",
+    "population_in_high_risk_tracts",
+    "share_population_in_high_risk_tracts"
+]
+
+existing_columns = [col for col in wanted_columns if col in summary.columns]
+
+results_table = summary[existing_columns].copy()
+
+results_table = results_table.rename(columns={
+    "state_clean": "State",
+    "tract_count": "Number of Tracts",
+    "median_hazard_risk": "Median Flood Risk",
+    "mean_hazard_risk": "Mean Flood Risk",
+    "upper_tail_hazard_risk": "Upper-Tail Flood Risk",
+    "total_population": "Total Population",
+    "population_in_high_risk_tracts": "Population in High-Risk Tracts",
+    "share_population_in_high_risk_tracts": "Share of Population in High-Risk Tracts"
+})
+
+results_table
