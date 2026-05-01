@@ -1,0 +1,68 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+
+# Natural Hazard
+
+summary = pd.DataFrame({
+    "state_clean": ["Minnesota", "Wisconsin", "Iowa", "Illinois", "Missouri", "Arkansas"],
+    "median_hazard_risk": [0.12, 0.15, 0.18, 0.22, 0.27, 0.31],
+    "population_impacted": [5700000, 5900000, 3200000, 12500000, 6200000, 3000000]
+})
+
+summary
+
+plt.figure(figsize=(10, 6))
+plt.bar(summary["state_clean"], summary["median_hazard_risk"])
+
+plt.title("Median Riverine Flood Risk by State")
+plt.xlabel("State")
+plt.ylabel("Median Riverine Flood Risk")
+plt.xticks(rotation=30, ha="right")
+plt.tight_layout()
+
+plt.show()
+
+
+# Trend across the 6 states
+
+plt.figure(figsize=(10, 6))
+plt.scatter(summary["population_impacted"], summary["median_hazard_risk"])
+
+for i in range(len(summary)):
+    plt.text(
+        summary["population_impacted"][i],
+        summary["median_hazard_risk"][i],
+        summary["state_clean"][i]
+    )
+
+plt.title("Population Impacted vs. Riverine Flood Risk")
+plt.xlabel("Population Impacted")
+plt.ylabel("Median Riverine Flood Risk")
+plt.tight_layout()
+
+plt.show()
+
+
+# Regional Trend 
+
+correlation = summary["population_impacted"].corr(summary["median_hazard_risk"])
+correlation
+
+highest_risk = summary.sort_values("median_hazard_risk", ascending=False)
+highest_risk
+
+
+# Population connection
+
+plt.figure(figsize=(10, 6))
+plt.bar(summary["state_clean"], summary["population_impacted"])
+
+plt.title("Population Impacted by Riverine Flood Risk by State")
+plt.xlabel("State")
+plt.ylabel("Population Impacted")
+plt.xticks(rotation=30, ha="right")
+plt.tight_layout()
+
+plt.show()
